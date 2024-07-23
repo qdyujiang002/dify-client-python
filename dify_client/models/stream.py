@@ -75,9 +75,12 @@ class MessageReplaceStreamResponse(MessageStreamResponse):
     answer: str
 
 
-class TTSMessageEndStreamResponse(MessageStreamResponse):
-    audio: str
+class TTSMessageEndStreamResponse(StreamResponse):
+    audio: Optional[str] = ""
     created_at: int  # unix timestamp seconds
+    message_id: str
+    conversation_id: Optional[str] = ""
+    answer: Optional[str] = ""
 
 
 class AgentMessageStreamResponse(MessageStreamResponse):
@@ -126,6 +129,7 @@ _COMPLETION_EVENT_TO_STREAM_RESP_MAPPING = {
     StreamEvent.MESSAGE: MessageStreamResponse,
     StreamEvent.MESSAGE_END: MessageEndStreamResponse,
     StreamEvent.MESSAGE_REPLACE: MessageReplaceStreamResponse,
+    StreamEvent.TTS_MESSAGE_END: MessageEndStreamResponse
 }
 
 CompletionStreamResponse = Union[
@@ -133,6 +137,7 @@ CompletionStreamResponse = Union[
     MessageStreamResponse,
     MessageEndStreamResponse,
     MessageReplaceStreamResponse,
+    TTSMessageEndStreamResponse
 ]
 
 
@@ -168,6 +173,7 @@ ChatStreamResponse = Union[
     AgentMessageStreamResponse,
     AgentThoughtStreamResponse,
     WorkflowsStreamResponse,
+    TTSMessageEndStreamResponse
 ]
 
 
