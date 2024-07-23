@@ -26,6 +26,7 @@ class StreamEvent(StrEnum):
     MESSAGE_REPLACE = "message_replace"
     ERROR = "error"
     PING = "ping"
+    TTS_MESSAGE_END = 'tts_message_end'
 
     @classmethod
     def new(cls, event: Union["StreamEvent", str]) -> "StreamEvent":
@@ -68,7 +69,15 @@ class MessageEndStreamResponse(StreamResponse):
 
 
 class MessageReplaceStreamResponse(MessageStreamResponse):
-    pass
+    message_id: str
+    conversation_id: Optional[str] = ""
+    created_at: int  # unix timestamp seconds
+    answer: str
+
+
+class TTSMessageEndStreamResponse(MessageStreamResponse):
+    audio: str
+    created_at: int  # unix timestamp seconds
 
 
 class AgentMessageStreamResponse(MessageStreamResponse):
@@ -139,6 +148,7 @@ _CHAT_EVENT_TO_STREAM_RESP_MAPPING = {
     StreamEvent.MESSAGE_END: MessageEndStreamResponse,
     StreamEvent.MESSAGE_REPLACE: MessageReplaceStreamResponse,
     StreamEvent.MESSAGE_FILE: MessageFileStreamResponse,
+    StreamEvent.TTS_MESSAGE_END: TTSMessageEndStreamResponse,
     # agent
     StreamEvent.AGENT_MESSAGE: AgentMessageStreamResponse,
     StreamEvent.AGENT_THOUGHT: AgentThoughtStreamResponse,
@@ -168,6 +178,7 @@ def build_chat_stream_response(data: dict) -> ChatStreamResponse:
 
 _WORKFLOW_EVENT_TO_STREAM_RESP_MAPPING = {
     StreamEvent.PING: PingResponse,
+    StreamEvent.TTS_MESSAGE_END: TTSMessageEndStreamResponse,
     # workflow
     StreamEvent.WORKFLOW_STARTED: WorkflowsStreamResponse,
     StreamEvent.NODE_STARTED: WorkflowsStreamResponse,
