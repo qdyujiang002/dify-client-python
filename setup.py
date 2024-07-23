@@ -4,14 +4,14 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="dify-client-python",
-    version="1.0.1",
-    author="haoyuhu",
-    author_email="im@huhaoyu.com",
+    name="dify-cli",
+    version="1.0.0",
+    author="yujiang",
+    author_email="501540155@qq.com",
     description="A package for interacting with the Dify Service-API",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/haoyuhu/dify-client-python",
+    url="https://github.com/qdyujiang002/dify-client-python",
     license='MIT',
     packages=['dify_client'],
     classifiers=[
