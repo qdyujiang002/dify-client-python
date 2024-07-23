@@ -9,7 +9,9 @@ from pydantic import BaseModel, ConfigDict
 
 
 class Mode(StrEnum):
-    CHAT = "chat"
+    WORKFLOW = "workflow"
+    ADVANCED_CHAT = "advanced-chat"
+    AGENT_CHAT = "agent-chat"
     COMPLETION = "completion"
 
 
