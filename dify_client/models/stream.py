@@ -55,30 +55,30 @@ class ErrorStreamResponse(StreamResponse, ErrorResponse):
 
 
 class MessageStreamResponse(StreamResponse):
-    message_id: str
+    message_id: Optional[str]
     conversation_id: Optional[str] = ""
-    answer: str
-    created_at: int  # unix timestamp seconds
+    answer: Optional[str]
+    created_at: Optional[int]  # unix timestamp seconds
 
 
 class MessageEndStreamResponse(StreamResponse):
-    message_id: str
+    message_id: Optional[str]
     conversation_id: Optional[str] = ""
-    created_at: int  # unix timestamp seconds
+    created_at: Optional[int]  # unix timestamp seconds
     metadata: Optional[Metadata]
 
 
 class MessageReplaceStreamResponse(MessageStreamResponse):
-    message_id: str
+    message_id: Optional[str]
     conversation_id: Optional[str] = ""
-    created_at: int  # unix timestamp seconds
-    answer: str
+    created_at: Optional[int]  # unix timestamp seconds
+    answer: Optional[str]
 
 
 class TTSMessageEndStreamResponse(StreamResponse):
     audio: Optional[str] = ""
-    created_at: int  # unix timestamp seconds
-    message_id: str
+    created_at: Optional[int]  # unix timestamp seconds
+    message_id: Optional[str]
     conversation_id: Optional[str] = ""
     answer: Optional[str] = ""
 
@@ -88,28 +88,28 @@ class AgentMessageStreamResponse(MessageStreamResponse):
 
 
 class AgentThoughtStreamResponse(StreamResponse):
-    id: str  # agent thought id
-    message_id: str
-    conversation_id: str
-    position: int  # thought position, start from 1
-    thought: str
-    observation: str
-    tool: str
-    tool_input: str
-    message_files: List[str] = []
-    created_at: int  # unix timestamp seconds
+    id: Optional[str]  # agent thought id
+    message_id: Optional[str]
+    conversation_id: Optional[str]
+    position: Optional[int] # thought position, start from 1
+    thought: Optional[str]
+    observation: Optional[str]
+    tool: Optional[str]
+    tool_input: Optional[str]
+    message_files: Optional[List[str]] = []
+    created_at: Optional[int]  # unix timestamp seconds
 
 
 class MessageFileStreamResponse(StreamResponse):
-    id: str  # file id
-    conversation_id: str
-    type: str  # only image
-    belongs_to: str  # assistant
-    url: str
+    id: Optional[str]  # file id
+    conversation_id: Optional[str]
+    type: Optional[str]  # only image
+    belongs_to: Optional[str]  # assistant
+    url: Optional[str]
 
 
 class WorkflowsStreamResponse(StreamResponse):
-    workflow_run_id: str
+    workflow_run_id: Optional[str]
     data: Optional[Union[
         WorkflowStartedData,
         WorkflowFinishedData,
@@ -119,9 +119,9 @@ class WorkflowsStreamResponse(StreamResponse):
 
 
 class ChatWorkflowsStreamResponse(WorkflowsStreamResponse):
-    message_id: str
-    conversation_id: str
-    created_at: int
+    message_id: Optional[str]
+    conversation_id: Optional[str]
+    created_at: Optional[int]
 
 
 _COMPLETION_EVENT_TO_STREAM_RESP_MAPPING = {

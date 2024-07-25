@@ -6,17 +6,17 @@ from dify_client.models.base import CompletionInputs, ResponseMode, File, Metada
 
 
 class CompletionRequest(BaseModel):
-    inputs: CompletionInputs
-    response_mode: ResponseMode
-    user: str
+    inputs: Optional[CompletionInputs]
+    response_mode: Optional[ResponseMode]
+    user: Optional[str]
     conversation_id: Optional[str] = ""
-    files: List[File] = []
+    files: Optional[List[File]] = []
 
 
 class CompletionResponse(BaseModel):
-    message_id: str
+    message_id: Optional[str]
     conversation_id: Optional[str] = ""
-    mode: Mode
-    answer: str
-    metadata: Metadata
-    created_at: int  # unix timestamp seconds
+    mode: Optional[Mode]
+    answer: Optional[str]
+    metadata: Optional[Metadata]
+    created_at: Optional[int]  # unix timestamp seconds

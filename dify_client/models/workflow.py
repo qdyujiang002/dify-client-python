@@ -23,31 +23,31 @@ class ExecutionMetadata(BaseModel):
 
 
 class WorkflowStartedData(BaseModel):
-    id: str  # workflow run id
-    workflow_id: str  # workflow id
-    sequence_number: int
+    id: Optional[str]  # workflow run id
+    workflow_id: Optional[str]  # workflow id
+    sequence_number: Optional[int]
     inputs: Optional[dict] = None
-    created_at: int  # unix timestamp seconds
+    created_at: Optional[int]  # unix timestamp seconds
 
 
 class NodeStartedData(BaseModel):
-    id: str  # workflow run id
-    node_id: str
-    node_type: str
-    title: str
-    index: int
+    id: Optional[str]  # workflow run id
+    node_id: Optional[str]
+    node_type: Optional[str]
+    title: Optional[str]
+    index: Optional[int]
     predecessor_node_id: Optional[str] = None
     inputs: Optional[dict] = None
-    created_at: int
-    extras: dict = {}
+    created_at: Optional[int]
+    extras: Optional[dict] = {}
 
 
 class NodeFinishedData(BaseModel):
-    id: str  # workflow run id
-    node_id: str
-    node_type: str
-    title: str
-    index: int
+    id: Optional[str]  # workflow run id
+    node_id: Optional[str]
+    node_type: Optional[str]
+    title: Optional[str]
+    index: Optional[int]
     predecessor_node_id: Optional[str] = None
     inputs: Optional[dict] = None
     process_data: Optional[dict] = None
@@ -56,25 +56,25 @@ class NodeFinishedData(BaseModel):
     error: Optional[str] = None
     elapsed_time: Optional[float]  # seconds
     execution_metadata: Optional[ExecutionMetadata] = None
-    created_at: int
-    finished_at: int
+    created_at: Optional[int]
+    finished_at: Optional[int]
     files: List = []
 
 
 class WorkflowFinishedData(BaseModel):
-    id: str  # workflow run id
-    workflow_id: str  # workflow id
-    sequence_number: int
+    id: Optional[str]  # workflow run id
+    workflow_id: Optional[str]  # workflow id
+    sequence_number: Optional[int]
     status: WorkflowStatus
     outputs: Optional[dict]
     error: Optional[str]
     elapsed_time: Optional[float]
     total_tokens: Optional[int]
     total_steps: Optional[int] = 0
-    created_at: int
-    finished_at: int
-    created_by: dict = {}
-    files: List = []
+    created_at: Optional[int]
+    finished_at: Optional[int]
+    created_by: Optional[dict] = {}
+    files: Optional[List] = []
 
 
 class WorkflowsRunRequest(BaseModel):
@@ -86,6 +86,7 @@ class WorkflowsRunRequest(BaseModel):
 
 
 class WorkflowsRunResponse(BaseModel):
-    log_id: str
-    task_id: str
+    log_id: Optional[str]
+    task_id: Optional[str]
+    workflow_run_id: Optional[str]
     data: WorkflowFinishedData

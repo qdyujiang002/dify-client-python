@@ -7,13 +7,13 @@ from dify_client.models.completion import CompletionResponse
 
 
 class ChatRequest(BaseModel):
-    query: str
-    inputs: Dict[str, Any] = Field(default_factory=dict)
-    response_mode: ResponseMode
-    user: str
+    query: Optional[str]
+    inputs: Optional[Dict[str, Any]] = Field(default_factory=dict)
+    response_mode: Optional[ResponseMode]
+    user: Optional[str]
     conversation_id: Optional[str] = ""
-    files: List[File] = []
-    auto_generate_name: bool = True
+    files: Optional[List[File]] = []
+    auto_generate_name: Optional[bool] = True
 
 
 class ChatResponse(CompletionResponse):
@@ -21,9 +21,9 @@ class ChatResponse(CompletionResponse):
 
 
 class ChatSuggestRequest(BaseModel):
-    user: str
+    user: Optional[str]
 
 
 class ChatSuggestResponse(BaseModel):
-    result: str
-    data: List[str] = []
+    result: Optional[str]
+    data: Optional[List[str]] = []

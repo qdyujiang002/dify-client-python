@@ -1,15 +1,15 @@
 from pydantic import BaseModel
-
+from typing import Optional
 
 class UploadFileRequest(BaseModel):
     user: str
 
 
 class UploadFileResponse(BaseModel):
-    id: str
-    name: str
-    size: int
-    extension: str
-    mime_type: str
-    created_by: str  # created by user
-    created_at: int  # unix timestamp seconds
+    id: Optional[str]
+    name: Optional[str]
+    size: Optional[int]
+    extension: Optional[str]
+    mime_type: Optional[str]
+    created_by: Optional[str]  # created by user
+    created_at: Optional[int]  # unix timestamp seconds

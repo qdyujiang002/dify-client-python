@@ -36,12 +36,12 @@ class TransferMethod(StrEnum):
 class CompletionInputs(BaseModel):
     model_config = ConfigDict(extra='allow')
     # Required The input text, the content to be processed.
-    query: str
+    query: Optional[str]
 
 
 class File(BaseModel):
-    type: FileType
-    transfer_method: TransferMethod
+    type: Optional[FileType]
+    transfer_method: Optional[TransferMethod]
     url: Optional[str]
     # Uploaded file ID, which must be obtained by uploading through the File Upload API in advance
     # (when the transfer method is local_file)
@@ -49,47 +49,47 @@ class File(BaseModel):
 
 
 class Usage(BaseModel):
-    prompt_tokens: int
-    completion_tokens: int
-    total_tokens: int
+    prompt_tokens: Optional[int]
+    completion_tokens: Optional[int]
+    total_tokens: Optional[int]
 
-    prompt_unit_price: str
-    prompt_price_unit: str
-    prompt_price: str
-    completion_unit_price: str
-    completion_price_unit: str
-    completion_price: str
-    total_price: str
-    currency: str
+    prompt_unit_price: Optional[str]
+    prompt_price_unit: Optional[str]
+    prompt_price: Optional[str]
+    completion_unit_price: Optional[str]
+    completion_price_unit: Optional[str]
+    completion_price: Optional[str]
+    total_price: Optional[str]
+    currency: Optional[str]
 
-    latency: float
+    latency: Optional[float]
 
 
 class RetrieverResource(BaseModel):
-    position: int
-    dataset_id: str
-    dataset_name: str
-    document_id: str
-    document_name: str
-    segment_id: str
-    score: float
-    content: str
+    position: Optional[int]
+    dataset_id: Optional[str]
+    dataset_name: Optional[str]
+    document_id: Optional[str]
+    document_name: Optional[str]
+    segment_id: Optional[str]
+    score: Optional[float]
+    content: Optional[str]
 
 
 class Metadata(BaseModel):
-    usage: Usage
-    retriever_resources: List[RetrieverResource] = []
+    usage: Optional[Usage]
+    retriever_resources: Optional[List[RetrieverResource]] = []
 
 
 class StopRequest(BaseModel):
-    user: str
+    user: Optional[str]
 
 
 class StopResponse(BaseModel):
-    result: str  # success
+    result: Optional[str]  # success
 
 
 class ErrorResponse(BaseModel):
-    status: int = HTTPStatus.INTERNAL_SERVER_ERROR  # HTTP status code
-    code: str = ""
-    message: str = ""
+    status: Optional[int] = HTTPStatus.INTERNAL_SERVER_ERROR  # HTTP status code
+    code: Optional[str] = ""
+    message: Optional[str] = ""
