@@ -36,57 +36,57 @@ class TransferMethod(StrEnum):
 class CompletionInputs(BaseModel):
     model_config = ConfigDict(extra='allow')
     # Required The input text, the content to be processed.
-    query: Optional[str]
+    query: Optional[str] = None
 
 
 class File(BaseModel):
-    type: Optional[FileType]
-    transfer_method: Optional[TransferMethod]
-    url: Optional[str]
+    type: Optional[FileType] = None
+    transfer_method: Optional[TransferMethod] = None
+    url: Optional[str] = None
     # Uploaded file ID, which must be obtained by uploading through the File Upload API in advance
     # (when the transfer method is local_file)
-    upload_file_id: Optional[str]
+    upload_file_id: Optional[str] = None
 
 
 class Usage(BaseModel):
-    prompt_tokens: Optional[int]
-    completion_tokens: Optional[int]
-    total_tokens: Optional[int]
+    prompt_tokens: Optional[int] = None
+    completion_tokens: Optional[int] = None
+    total_tokens: Optional[int] = None
 
-    prompt_unit_price: Optional[str]
-    prompt_price_unit: Optional[str]
-    prompt_price: Optional[str]
-    completion_unit_price: Optional[str]
-    completion_price_unit: Optional[str]
-    completion_price: Optional[str]
-    total_price: Optional[str]
-    currency: Optional[str]
+    prompt_unit_price: Optional[str] = None
+    prompt_price_unit: Optional[str] = None
+    prompt_price: Optional[str] = None
+    completion_unit_price: Optional[str] = None
+    completion_price_unit: Optional[str] = None
+    completion_price: Optional[str] = None
+    total_price: Optional[str] = None
+    currency: Optional[str] = None
 
-    latency: Optional[float]
+    latency: Optional[float] = None
 
 
 class RetrieverResource(BaseModel):
-    position: Optional[int]
-    dataset_id: Optional[str]
-    dataset_name: Optional[str]
-    document_id: Optional[str]
-    document_name: Optional[str]
-    segment_id: Optional[str]
-    score: Optional[float]
-    content: Optional[str]
+    position: Optional[int] = None
+    dataset_id: Optional[str] = None
+    dataset_name: Optional[str] = None
+    document_id: Optional[str] = None
+    document_name: Optional[str] = None
+    segment_id: Optional[str] = None
+    score: Optional[float] = None
+    content: Optional[str] = None
 
 
 class Metadata(BaseModel):
-    usage: Optional[Usage]
+    usage: Optional[Usage] = None
     retriever_resources: Optional[List[RetrieverResource]] = []
 
 
 class StopRequest(BaseModel):
-    user: Optional[str]
+    user: Optional[str] = None
 
 
 class StopResponse(BaseModel):
-    result: Optional[str]  # success
+    result: Optional[str] = None  # success
 
 
 class ErrorResponse(BaseModel):

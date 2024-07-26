@@ -17,62 +17,62 @@ class WorkflowStatus(StrEnum):
 
 
 class ExecutionMetadata(BaseModel):
-    total_tokens: Optional[int]
-    total_price: Optional[str]
-    currency: Optional[str]
+    total_tokens: Optional[int] = None
+    total_price: Optional[str] = None
+    currency: Optional[str] = None
 
 
 class WorkflowStartedData(BaseModel):
-    id: Optional[str]  # workflow run id
-    workflow_id: Optional[str]  # workflow id
-    sequence_number: Optional[int]
+    id: Optional[str] = None  # workflow run id
+    workflow_id: Optional[str] = None  # workflow id
+    sequence_number: Optional[int] = None
     inputs: Optional[dict] = None
-    created_at: Optional[int]  # unix timestamp seconds
+    created_at: Optional[int] = None  # unix timestamp seconds
 
 
 class NodeStartedData(BaseModel):
-    id: Optional[str]  # workflow run id
-    node_id: Optional[str]
-    node_type: Optional[str]
-    title: Optional[str]
-    index: Optional[int]
+    id: Optional[str] = None  # workflow run id
+    node_id: Optional[str] = None
+    node_type: Optional[str] = None
+    title: Optional[str] = None
+    index: Optional[int] = None
     predecessor_node_id: Optional[str] = None
     inputs: Optional[dict] = None
-    created_at: Optional[int]
+    created_at: Optional[int] = None
     extras: Optional[dict] = {}
 
 
 class NodeFinishedData(BaseModel):
-    id: Optional[str]  # workflow run id
-    node_id: Optional[str]
-    node_type: Optional[str]
-    title: Optional[str]
-    index: Optional[int]
+    id: Optional[str] = None  # workflow run id
+    node_id: Optional[str] = None
+    node_type: Optional[str] = None
+    title: Optional[str] = None
+    index: Optional[int] = None
     predecessor_node_id: Optional[str] = None
     inputs: Optional[dict] = None
     process_data: Optional[dict] = None
     outputs: Optional[dict] = {}
     status: WorkflowStatus
     error: Optional[str] = None
-    elapsed_time: Optional[float]  # seconds
+    elapsed_time: Optional[float] = None  # seconds
     execution_metadata: Optional[ExecutionMetadata] = None
-    created_at: Optional[int]
-    finished_at: Optional[int]
-    files: List = []
+    created_at: Optional[int] = None
+    finished_at: Optional[int] = None
+    files: Optional[List] = []
 
 
 class WorkflowFinishedData(BaseModel):
-    id: Optional[str]  # workflow run id
-    workflow_id: Optional[str]  # workflow id
-    sequence_number: Optional[int]
+    id: Optional[str] = None  # workflow run id
+    workflow_id: Optional[str] = None  # workflow id
+    sequence_number: Optional[int] = None
     status: WorkflowStatus
-    outputs: Optional[dict]
-    error: Optional[str]
-    elapsed_time: Optional[float]
-    total_tokens: Optional[int]
+    outputs: Optional[dict] = None
+    error: Optional[str] = None
+    elapsed_time: Optional[float] = None
+    total_tokens: Optional[int] = None
     total_steps: Optional[int] = 0
-    created_at: Optional[int]
-    finished_at: Optional[int]
+    created_at: Optional[int] = None
+    finished_at: Optional[int] = None
     created_by: Optional[dict] = {}
     files: Optional[List] = []
 
@@ -80,13 +80,13 @@ class WorkflowFinishedData(BaseModel):
 class WorkflowsRunRequest(BaseModel):
     inputs: Dict = {}
     response_mode: ResponseMode
-    user: str
+    user: str = None
     conversation_id: Optional[str] = ""
     files: List[File] = []
 
 
 class WorkflowsRunResponse(BaseModel):
-    log_id: Optional[str]
-    task_id: Optional[str]
-    workflow_run_id: Optional[str]
+    log_id: Optional[str] = None
+    task_id: Optional[str] = None
+    workflow_run_id: Optional[str] = None
     data: WorkflowFinishedData

@@ -6,10 +6,10 @@ class UploadFileRequest(BaseModel):
 
 
 class UploadFileResponse(BaseModel):
-    id: Optional[str]
-    name: Optional[str]
-    size: Optional[int]
-    extension: Optional[str]
-    mime_type: Optional[str]
-    created_by: Optional[str]  # created by user
-    created_at: Optional[int]  # unix timestamp seconds
+    id: Optional[str] = None
+    name: Optional[str] = None
+    size: Optional[int] = None
+    extension: Optional[str] = None
+    mime_type: Optional[str] = None
+    created_by: Optional[str] = None  # created by user
+    created_at: Optional[int] = None  # unix timestamp seconds
