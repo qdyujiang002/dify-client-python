@@ -30,6 +30,8 @@ class StreamEvent(StrEnum):
     ITERATION_STARTED = 'iteration_started'
     ITERATION_NEXT = 'iteration_next'
     ITERATION_END = 'iteration_end'
+    ITERATION_COMPLETED = 'iteration_completed'
+
 
     @classmethod
     def new(cls, event: Union["StreamEvent", str]) -> "StreamEvent":
