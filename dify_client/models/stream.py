@@ -28,6 +28,8 @@ class StreamEvent(StrEnum):
     PING = "ping"
     TTS_MESSAGE_END = 'tts_message_end'
     ITERATION_STARTED = 'iteration_started'
+    ITERATION_NEXT = 'iteration_next'
+    ITERATION_END = 'iteration_end'
 
     @classmethod
     def new(cls, event: Union["StreamEvent", str]) -> "StreamEvent":
