@@ -31,6 +31,11 @@ class StreamEvent(StrEnum):
     ITERATION_NEXT = 'iteration_next'
     ITERATION_END = 'iteration_end'
     ITERATION_COMPLETED = 'iteration_completed'
+    PARALLEL_BRANCH_STARTED = 'parallel_branch_started'
+    PARALLEL_BRANCH_END = 'parallel_branch_end'
+    PARALLEL_BRANCH_COMPLETED = 'parallel_branch_completed'
+    PARALLEL_BRANCH_FINISHED = 'parallel_branch_finished'
+
 
 
     @classmethod
